@@ -1,5 +1,5 @@
-const CACHE_NAME = 'life-rpg-v2';
-const ASSETS = ['/', '/index.html', '/styles.css', '/store.js', '/pages.js', '/modals.js', '/app.js', '/manifest.json'];
+const CACHE_NAME = 'life-rpg-v3';
+const ASSETS = ['./index.html', './styles.css', './store.js', './pages.js', './modals.js', './app.js', './manifest.json'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
@@ -15,6 +15,10 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    fetch(e.request).catch(() => caches.match(e.request))
+    caches.match(e.request).then(cached => cached || fetch(e.request).then(resp => {
+      const clone = resp.clone();
+      caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+      return resp;
+    }))
   );
 });
