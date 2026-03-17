@@ -1,4 +1,4 @@
-const CACHE_NAME = 'life-rpg-v4';
+const CACHE_NAME = 'life-rpg-v5';
 const ASSETS = ['./index.html', './styles.css', './store.js', './pages.js', './modals.js', './app.js', './manifest.json'];
 
 self.addEventListener('install', (e) => {

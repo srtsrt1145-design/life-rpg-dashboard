@@ -42,13 +42,18 @@ function renderPage() {
   const main = document.getElementById('main-content');
   document.querySelectorAll('.fab').forEach(f => f.remove());
 
-  switch(currentPage) {
-    case 'home': main.innerHTML = renderHome(); break;
-    case 'powers': main.innerHTML = currentSubPage ? renderPowerDetail(currentSubPage) : renderPowers(); break;
-    case 'finance': main.innerHTML = renderFinance(); addFAB('finance'); break;
-    case 'tasks': main.innerHTML = renderTasks(); addFAB('task'); break;
-    case 'journal': main.innerHTML = renderJournal(); addFAB('journal'); break;
-    case 'settings': main.innerHTML = renderSettings(); break;
+  try {
+    switch(currentPage) {
+      case 'home': main.innerHTML = renderHome(); break;
+      case 'powers': main.innerHTML = currentSubPage ? renderPowerDetail(currentSubPage) : renderPowers(); break;
+      case 'finance': main.innerHTML = renderFinance(); addFAB('finance'); break;
+      case 'tasks': main.innerHTML = renderTasks(); addFAB('task'); break;
+      case 'journal': main.innerHTML = renderJournal(); addFAB('journal'); break;
+      case 'settings': main.innerHTML = renderSettings(); break;
+    }
+  } catch(e) {
+    console.error('renderPage error:', e);
+    main.innerHTML = '<div class="page" style="padding:20px;color:#f66"><h3>⚠️ 렌더링 오류</h3><pre>' + e.message + '</pre></div>';
   }
   main.querySelector('.page')?.classList.add('page-enter');
 }

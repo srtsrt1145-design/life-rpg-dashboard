@@ -582,7 +582,7 @@ function renderCreativityPower() {
     <div class="section-header"><h3 class="section-title"><span class="emoji">💡</span> 아이디어 노트</h3>
       <button class="section-action" onclick="showIdeaModal()">+ 추가</button></div>
     ${sorted.map(idea => `<div class="journal-entry" onclick="showIdeaModal(${idea.id})">
-        <div class="journal-date">${idea.date} ${daysUntil(idea.date) !== null ? \`(${Math.abs(daysUntil(idea.date))}일 전)\` : ''}</div>
+        <div class="journal-date">${idea.date} ${daysUntil(idea.date) !== null ? '(' + Math.abs(daysUntil(idea.date)) + '일 전)' : ''}</div>
         <div class="journal-title">${idea.title}</div>
         <div class="journal-preview">${idea.content||''}</div>
       </div>`).join('')}
