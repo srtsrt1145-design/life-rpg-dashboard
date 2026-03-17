@@ -522,22 +522,22 @@ function renderIntelPower() {
     <div class="section-header"><h3 class="section-title"><span class="emoji">📖</span> 독서 (${reading.length}권 읽는 중)</h3>
       <button class="section-action" onclick="showBookModal()">+ 추가</button></div>
     ${books.map(b => { const pct = b.totalPages ? Math.round((b.currentPage/b.totalPages)*100) : 0;
-      return \`<div class="book-item" onclick="showBookModal(${b.id})">
+      return `<div class="book-item" onclick="showBookModal(${b.id})">
         <div class="book-cover" style="background:rgba(168,85,247,0.12)">📖</div>
         <div class="book-info"><div class="book-title">${b.title}</div><div class="book-author">${b.author} · ${b.currentPage}/${b.totalPages}p</div>
           <div class="book-progress"><div class="book-progress-fill" style="width:${pct}%"></div></div></div>
         <span style="font-size:12px;color:var(--accent-purple);font-weight:600">${pct}%</span>
-      </div>\`;}).join('')}
+      </div>`;}).join('')}
     ${!books.length?'<div class="empty-state" style="padding:16px"><div class="empty-state-desc">책을 등록하세요</div></div>':''}
     <div class="section-header"><h3 class="section-title"><span class="emoji">🎓</span> 강의 (${lectures.length})</h3>
       <button class="section-action" onclick="showLectureModal()">+ 추가</button></div>
     ${lectures.map(l => { const pct = l.totalLessons ? Math.round((l.completedLessons/l.totalLessons)*100) : 0;
-      return \`<div class="book-item" onclick="showLectureModal(${l.id})">
+      return `<div class="book-item" onclick="showLectureModal(${l.id})">
         <div class="book-cover" style="background:rgba(96,165,250,0.12)">🎓</div>
         <div class="book-info"><div class="book-title">${l.title}</div><div class="book-author">${l.platform||'온라인'} · ${l.completedLessons}/${l.totalLessons}강</div>
           <div class="book-progress"><div class="book-progress-fill" style="width:${pct}%;background:var(--accent-blue)"></div></div></div>
         <span style="font-size:12px;color:var(--accent-blue);font-weight:600">${pct}%</span>
-      </div>\`;}).join('')}
+      </div>`;}).join('')}
     ${!lectures.length?'<div class="empty-state" style="padding:16px"><div class="empty-state-desc">강의를 등록하세요</div></div>':''}
   </div>`;
 }
@@ -581,11 +581,11 @@ function renderCreativityPower() {
     </div>
     <div class="section-header"><h3 class="section-title"><span class="emoji">💡</span> 아이디어 노트</h3>
       <button class="section-action" onclick="showIdeaModal()">+ 추가</button></div>
-    ${sorted.map(idea => \`<div class="journal-entry" onclick="showIdeaModal(${idea.id})">
-        <div class="journal-date">${idea.date} ${daysUntil(idea.date) !== null ? \\`(${Math.abs(daysUntil(idea.date))}일 전)\\` : ''}</div>
+    ${sorted.map(idea => `<div class="journal-entry" onclick="showIdeaModal(${idea.id})">
+        <div class="journal-date">${idea.date} ${daysUntil(idea.date) !== null ? \`(${Math.abs(daysUntil(idea.date))}일 전)\` : ''}</div>
         <div class="journal-title">${idea.title}</div>
         <div class="journal-preview">${idea.content||''}</div>
-      </div>\`).join('')}
+      </div>`).join('')}
     ${!ideas.length?'<div class="empty-state"><div class="empty-state-icon">💡</div><div class="empty-state-title">아이디어를 기록하세요</div><div class="empty-state-desc">번뜩이는 아이디어를 놓치지 마세요</div></div>':''}
   </div>`;
 }
@@ -634,7 +634,7 @@ function renderPhysicalPower() {
     <div class="condition-card">
       <div class="condition-row"><span class="condition-label">🏃 신체</span><div class="stat-bar-track hp"><div class="stat-bar-fill hp" style="width:${log.condition.physical}%"></div></div><span class="stat-value">${log.condition.physical}%</span></div>
       <div class="condition-row"><span class="condition-label">🧠 정신</span><div class="stat-bar-track mp"><div class="stat-bar-fill mp" style="width:${log.condition.mental}%"></div></div><span class="stat-value">${log.condition.mental}%</span></div>
-      ${log.condition.note ? \`<div class="condition-note">${log.condition.note}</div>\` : ''}
+      ${log.condition.note ? `<div class="condition-note">${log.condition.note}</div>` : ''}
     </div>
     <div class="section-header"><h3 class="section-title"><span class="emoji">🏋️</span> 운동 습관</h3></div>
     ${physicalHabits.length ? physicalHabits.map(h => renderHabitItem(h, 'good', today)).join('') :
@@ -655,11 +655,11 @@ function renderStrategy() {
       <button class="section-action" onclick="showGoalModal()">+ 추가</button></div>
     ${yearlyGoals.map(g => {
       const pct = g.target ? Math.min(100, Math.round(Math.abs(g.current / g.target) * 100)) : 0;
-      return \`<div class="quest-item" onclick="showGoalModal(${g.id})">
+      return `<div class="quest-item" onclick="showGoalModal(${g.id})">
         <div class="quest-header"><div class="quest-title">${g.title}</div><span class="quest-status active">${g.current}${g.unit} / ${g.target}${g.unit}</span></div>
         <div class="quest-progress-track"><div class="quest-progress-fill" style="width:${pct}%"></div></div>
         <div class="quest-meta"><span>${pct}% 달성</span><span>${g.category}</span></div>
-      </div>\`; }).join('')}
+      </div>`; }).join('')}
     ${!yearlyGoals.length?'<div class="empty-state"><div class="empty-state-icon">🗺️</div><div class="empty-state-title">연간 목표를 설정하세요</div></div>':''}
   </div>`;
 }
@@ -671,15 +671,15 @@ function renderRewardShop() {
     <div class="section-header"><h3 class="section-title"><span class="emoji">🪙</span> 보유 코인: ${character.coins}</h3></div>
     <div class="section-header"><h3 class="section-title"><span class="emoji">⛏️</span> 채굴 현황</h3></div>
     <div class="power-score-grid">
-      ${[{k:'action',l:'실행력'},{k:'willpower',l:'의지력'},{k:'finance',l:'재무력'},{k:'intel',l:'지능력'},{k:'creativity',l:'창의력'},{k:'physical',l:'신체'}].map(p=>\`
-        <div class="power-score-item"><span class="power-score-val" style="width:50px">${p.l}</span><div class="power-score-bar-track"><div class="power-score-bar-fill" style="width:${powerScores[p.k]}%;background:var(--accent-gold)"></div></div><span class="power-score-val">${powerScores[p.k]}pt</span></div>\`).join('')}
+      ${[{k:'action',l:'실행력'},{k:'willpower',l:'의지력'},{k:'finance',l:'재무력'},{k:'intel',l:'지능력'},{k:'creativity',l:'창의력'},{k:'physical',l:'신체'}].map(p=>`
+        <div class="power-score-item"><span class="power-score-val" style="width:50px">${p.l}</span><div class="power-score-bar-track"><div class="power-score-bar-fill" style="width:${powerScores[p.k]}%;background:var(--accent-gold)"></div></div><span class="power-score-val">${powerScores[p.k]}pt</span></div>`).join('')}
     </div>
     <div class="section-header"><h3 class="section-title"><span class="emoji">🎁</span> 상점</h3>
       <button class="section-action" onclick="showRewardModal()">+ 추가</button></div>
-    ${rewards.map(r => \`<div class="sub-item">
+    ${rewards.map(r => `<div class="sub-item">
       <div class="sub-info"><span class="sub-icon">${r.icon}</span><div><div class="sub-name">${r.name}</div><div class="sub-cycle">💰 ${r.cost} 코인 · 구매 ${r.purchased}회</div></div></div>
       <button class="mini-btn" onclick="buyReward(${r.id})" ${character.coins < r.cost ? 'disabled style="opacity:0.4"' : ''}>🛒 구매</button>
-    </div>\`).join('')}
+    </div>`).join('')}
   </div>`;
 }
 
